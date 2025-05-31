@@ -112,7 +112,7 @@
                     
                     try {
                         // Send data to your MongoDB API endpoint
-                        const response = await fetch('http://localhost:5000/api/contact', {
+                        const response = await fetch('https://sonycom-backend.onrender.com', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
