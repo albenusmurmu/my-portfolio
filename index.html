@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <!-- MongoDB Integration -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="#" class="logo" onclick="window.location.href='http://localhost:3000'">
+            <span class="ms-2 fw-bold" 
+               style="color: rgba(128, 41, 86, 0.8);letter-spacing:0.2rem; padding-bottom: 4rem;">
+               SonyCom
+            </span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Header Section -->
+    <header id="home">
+        <div class="particles">
+            <!-- JS will generate particles -->
+        </div>
+        <div class="container">
+            <div class="hero">
+                <h3>Hello, I'm</h3>
+                <h1>Albenus <span class="accent-text">Peter</span></h1>
+                <h3>Full Stack Developer & Cloud Enthusiast</h3>
+                <div class="hero-btns">
+                    <a href="#projects" class="btn btn-filled">View My Work</a>
+                    <a href="#contact" class="btn">Contact Me</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-img">
+                    <img src="assets/images/peterpic.jpg" alt="Profile Image" style="height: 300px; width: 350px;">
+                </div>
+                <div class="about-text">
+                    <p>Hello! I'm Albenus Peter, a passionate full-stack developer with Cloud Enthusiast with over 1 years of experience. I enjoy creating elegant solutions to complex problems.</p>
+                    <p>My focus is on building responsive, user-friendly web applications that deliver exceptional user experiences. I'm continuously learning new technologies and methodologies to stay at the forefront of web development.</p>
+                    <p>When I'm not coding, you can find me hiking, reading, or experimenting with new recipes in the kitchen.</p>
+                    <a href="assets/images/MyResume/albenus-peter-89.pdf"   class="btn">Open CV</a>
+                    <a href="assets/images/MyResume/albenus-peter-89.pdf"  download class="btn">Download CV</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">My Skills</h2>
+            <div class="skills-container">
+                <div class="skill-card" style="animation-delay: 0.1s;">
+                    <div class="skill-icon">💻</div>
+                    <h3 class="skill-title">Front-end Development</h3>
+                    <p class="skill-desc">Creating responsive and interactive user interfaces with HTML, CSS, JavaScript, React, and Vue.js.</p>
+                </div>
+                <div class="skill-card" style="animation-delay: 0.2s;">
+                    <div class="skill-icon">⚙️</div>
+                    <h3 class="skill-title">Back-end Development</h3>
+                    <p class="skill-desc">Building robust server-side applications with Node.js, Express, Python, and Django.</p>
+                </div>
+                <div class="skill-card" style="animation-delay: 0.3s;">
+                    <div class="skill-icon">🎨</div>
+                    <h3 class="skill-title">UI/UX Design</h3>
+                    <p class="skill-desc">Designing intuitive user experiences and visually appealing interfaces using Figma and Adobe XD.</p>
+                </div>
+                <div class="skill-card" style="animation-delay: 0.4s;">
+                    <div class="skill-icon">☁️</div>
+                    <h3 class="skill-title">Cloud Computing</h3>
+                    <p class="skill-desc"> Proficient in deploying, managing, and securing cloud-based applications with a focus on scalability and cost-efficiency.</p>
+                </div>
+                <div class="skill-card" style="animation-delay: 0.5s;">
+                    <div class="skill-icon">🗄️</div>
+                    <h3 class="skill-title">Database Design</h3>
+                    <p class="skill-desc">Designing and optimizing databases with MongoDB, MySQL, and PostgreSQL.</p>
+                </div>
+                <div class="skill-card" style="animation-delay: 0.6s;">
+                    <div class="skill-icon">🔐</div>
+                    <h3 class="skill-title">DevOps</h3>
+                    <p class="skill-desc">Implementing CI/CD pipelines, Docker containerization, and AWS cloud services.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">My Projects</h2>
+            <div class="projects-container">
+                <div class="project-card" style="animation-delay: 0.1s;">
+                    <div class="project-img"><img src="assets/images/Mini Social Chat.png" alt="Mini-Social-Chat" style="height: 300px; width: 500px;"> </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Mini Social Chat</h3>
+                        <p class="project-desc">A dynamic real-time chat app powered by REST APIs, offering seamless messaging and social interaction in a simple interface.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">MongoDB</span>
+                            <span class="project-tag">Express.js</span>
+                            <span class="project-tag">React.js</span>
+                            <span class="project-tag">MongoDB</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">View Demo</a>
+                            <a href="https://github.com/albenusmurmu/SocialChat.1/tree/main" class="project-link">View Code</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card" style="animation-delay: 0.2s;">
+                    <div class="project-img"> <img src="assets/images/StockMonitoringTool.png" alt="Stock-Monitoring-Tool" style="height: 300px; width: 500px;"> </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Stock Monitoring Tools</h3>
+                        <p class="project-desc">Developed a real-time stock monitoring web application to track and display live stock prices and trends.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">MongoDB</span>
+                            <span class="project-tag">Express.js</span>
+                            <span class="project-tag">React.js</span>
+                            <span class="project-tag">MongoDB</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">View Demo</a>
+                            <a href="https://github.com/albenusmurmu/Stock-Monitoring-Tool" class="project-link">View Code</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card" style="animation-delay: 0.3s;">
+                    <div class="project-img"><img src="assets/images/Simon Says game.png" alt="Simon-Says-Game" style="height: 300px; width: 500px;"> </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Simon Says Game</h3>
+                        <p class="project-desc">A fun and interactive memory game built using HTML, CSS, and JavaScript.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">HTML</span>
+                            <span class="project-tag">CSS</span>
+                            <span class="project-tag">JavaScript</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">View Demo</a>
+                            <a href="https://github.com/albenusmurmu/Simon-Says-Game/" class="project-link">View Code</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card" style="animation-delay: 0.4s;">
+                    <div class="project-img"><img src="assets/images/Wheather.png" alt="Track-Wheather" style="height: 300px; width: 500px;"> </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Knows-Current-Wheather</h3>
+                        <p class="project-desc">Explore real-time weather updates! This project allows you to test how quickly it processes requests and retrieves responses.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">JavaScript</span>
+                            <span class="project-tag">Weather API</span>
+                            <span class="project-tag">D3.js</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">View Demo</a>
+                            <a href="https://github.com/albenusmurmu/Knows-Current-Wheather" class="project-link">View Code</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card" style="animation-delay: 0.5s;">
+                    <div class="project-img"><img src="assets/images/random color.png" alt="Generate-random-color" style="height: 200px; width: auto;"> </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Generate-random-color</h3>
+                        <p class="project-desc">Click a button to instantly generate a random color along with its HEX code.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">HTML</span>
+                            <span class="project-tag">CSS</span>
+                            <span class="project-tag">JavaScript</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">View Demo</a>
+                            <a href="https://github.com/albenusmurmu/Generate-random-color/" class="project-link">View Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Let's Talk About Your Project</h3>
+                    <p>Feel free to reach out if you're looking for a developer, have a question, or just want to connect.</p>
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <span>albenusm@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <span>+91 (785) 797-1928</span>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <span>Jaipur Rajasthan, India</span>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" class="form-control" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" class="form-control" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="subject" name="subject" class="form-control" placeholder="Subject" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" class="form-control" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-filled">Send Message</button>
+                        <div id="formStatus" class="mt-3"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/albenusmurmu/" class="social-link"><i class="fab fa-linkedin"></i>
+</a>
+                <a href="https://github.com/albenusmurmu" class="social-link"><i class="fab fa-github"></i>
+</a>
+                <a href="https://www.instagram.com/albenus.pieter/" class="social-link"><i class="fab fa-instagram"></i>
+</a>
+                <a href="https://x.com/AlbenusMur63460" class="social-link"><i class="fab fa-x-twitter"></i>
+</a>
+            </div>
+            <p class="footer-text"><a href="#" class="mb-5" style="text-decoration: none; " onclick="window.location.href='http://localhost:3000'">© 2025 SonyCom. All Rights Reserved.</a></p>
+        </div>
+    </footer>
+    <script src="js/script.js"></script>
+</body>
+</html>
