@@ -391,7 +391,15 @@
         .project-link:hover {
             color: var(--accent-color);
         }
+
+        /* certifications Section */
+        #certifications {
+            padding: 100px 0;
+        }
         
+        .Certificate{
+            text-decoration: none;
+        }
         /* Contact Section */
         #contact {
             padding: 100px 0;

@@ -87,64 +87,80 @@
         }
         
         // Contact form submission to MongoDB
-        function setupContactForm() {
-            const contactForm = document.getElementById('contactForm');
-            const formStatus = document.getElementById('formStatus');
-            
-            if (contactForm) {
-                contactForm.addEventListener('submit', async function(e) {
-                    e.preventDefault();
-                    
-                    // Show loading state
-                    const submitBtn = contactForm.querySelector('button[type="submit"]');
-                    const originalBtnText = submitBtn.innerText;
-                    submitBtn.innerText = 'Sending...';
-                    submitBtn.disabled = true;
-                    
-                    // Get form data
-                    const formData = {
-                        name: document.getElementById('name').value,
-                        email: document.getElementById('email').value,
-                        subject: document.getElementById('subject').value,
-                        message: document.getElementById('message').value,
-                        date: new Date()
-                    };
-                    
-                    try {
-                        // Send data to your MongoDB API endpoint
-                        const response = await fetch('https://sonycom-backend.onrender.com', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify(formData)
-                        });
-                        
-                        if (response.ok) {
-                            // Success message
-                            formStatus.innerHTML = '<div style="color: var(--accent-color); padding: 10px;">Your message has been sent successfully!</div>';
-                            contactForm.reset();
-                        } else {
-                            // Error message
-                            formStatus.innerHTML = '<div style="color: #ff3860; padding: 10px;">Something went wrong. Please try again later.</div>';
-                        }
-                    } catch (error) {
-                        console.error('Error:', error);
-                        formStatus.innerHTML = '<div style="color: #ff3860; padding: 10px;">Network error. Please check your connection.</div>';
-                    } finally {
-                        // Reset button state
-                        submitBtn.innerText = originalBtnText;
-                        submitBtn.disabled = false;
-                        
-                        // Clear status message after 5 seconds
-                        setTimeout(() => {
-                            formStatus.innerHTML = '';
-                        }, 5000);
-                    }
-                });
-            }
-        }        
+    function setupContactForm() {
+        const contactForm = document.getElementById('contactForm');
+        const formStatus = document.getElementById('formStatus');
         
+        if (!contactForm) return;
+    
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+    
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerText;
+            submitBtn.innerText = 'Sending...';
+            submitBtn.disabled = true;
+    
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value,
+                date: new Date()
+            };
+    
+            try {
+                const response = await fetch('http://localhost:5000/api/v1/contact', {
+                    method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+
+            let responseData;
+
+            try {
+                responseData = await response.json();
+            } catch (jsonError) {
+                const rawText = await response.text();
+                console.warn("Could not parse JSON:", rawText);
+                throw new Error("Invalid JSON response");
+            }
+
+            if (response.ok) {
+                formStatus.innerHTML = `
+                    <div style="color: var(--accent-color); padding: 10px;">
+                        ${responseData.message || 'Your message has been sent successfully!'}
+                    </div>
+                `;
+                contactForm.reset();
+            } else {
+                formStatus.innerHTML = `
+                    <div style="color: #ff3860; padding: 10px;">
+                        ${responseData?.error || 'Something went wrong. Please try again later.'}
+                    </div>
+                `;
+            }
+
+        } catch (error) {
+            console.error('Submission error:', error);
+            formStatus.innerHTML = `
+                <div style="color: #ff3860; padding: 10px;">
+                    ${error.message === "Invalid JSON response"
+                        ? "Server returned an invalid response. Please contact support."
+                        : "Network error. Please check your connection."}
+                </div>
+            `;
+        } finally {
+            submitBtn.innerText = originalBtnText;
+            submitBtn.disabled = false;
+
+            setTimeout(() => {
+                formStatus.innerHTML = '';
+            }, 5000);
+        }
+    });
+}
+       
         // Initialize everything when DOM content is loaded
         document.addEventListener('DOMContentLoaded', () => {
             createParticles();
