@@ -12,7 +12,6 @@ Welcome to my **personal portfolio** repository! This is a clean, responsive, an
 - ⚡ Lightning-fast and responsive design
 - 🖼️ Image gallery for projects and skills
 - 🌙 Dark mode ready (if implemented)
-- 📱 Mobile & tablet-friendly layout
 - 📋 Structured layout for About, Projects, Skills, Contact
 
 ---
