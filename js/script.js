@@ -94,7 +94,6 @@ function setupContactForm() {
     if (!contactForm) return;
 
     // !! --- THIS IS THE KEY CHANGE --- !!
-    // Replace this with your actual live backend URL from Render.
   const apiUrl = 'https://sonycom-backend.onrender.com/api/v1/contact';
 
 contactForm.addEventListener('submit', async function(e) {
@@ -113,14 +112,13 @@ contactForm.addEventListener('submit', async function(e) {
     };
 
     try {
-        // Use the live API URL variable here
+        // Use the live API URL variable 
         const response = await fetch(apiUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData)
         });
 
-        // The rest of your code is already very good!
         let responseData;
         try {
             responseData = await response.json();
