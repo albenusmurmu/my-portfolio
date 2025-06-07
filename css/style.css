@@ -53,10 +53,11 @@
         }
         
         .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--accent-color);
-            text-decoration: none;
+             font-size: 24px;
+             font-weight: bold;
+             color: var(--accent-color);
+             text-decoration: none;
+             z-index: 10; /* Ensure logo stays on top */
         }
         
         .nav-links {
@@ -95,6 +96,69 @@
         .nav-links a:hover::after {
             width: 100%;
         }
+
+        /* --- Hamburger Icon (Hidden on Desktop) --- */
+        .hamburger {
+            display: none; /* Hide hamburger on large screens */
+            cursor: pointer;
+        }
+
+        .hamburger .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px 0;
+            background-color: white;
+            transition: all 0.3s ease-in-out;
+        }
+
+    /* === MOBILE RESPONSIVE STYLES === */
+    /* This media query applies styles only when the screen is 768px wide or less */
+    
+        @media (max-width: 768px) {
+            /* Show the hamburger icon */
+            .hamburger {
+                display: block;
+            }
+        
+            /* Animate hamburger to an 'X' when active */
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+        
+            /* Style the mobile navigation menu */
+            .nav-links {
+                position: fixed; /* Take it out of the normal flow */
+                top: 70px; /* Position it just below the nav bar */
+                left: -100%; /* Start off-screen to the left */
+                
+                width: 100%;
+                height: calc(100vh - 70px); /* Fill the rest of the screen */
+        
+                flex-direction: column; /* Stack links vertically */
+                justify-content: center; /* Center links vertically */
+                align-items: center; /* Center links horizontally */
+                gap: 40px; /* Increase space for easier tapping */
+        
+                background-color: rgba(10, 10, 10, 0.98); /* Almost solid background */
+                transition: left 0.3s ease-in-out; /* Smooth slide-in animation */
+            }
+        
+            /* Slide the menu in when it's active */
+            .nav-links.active {
+                left: 0;
+            }
+        
+            .nav-links a {
+                font-size: 20px; /* Make text larger on mobile */
+            }
+        }
         
         /* Hero Section */
         .hero {
@@ -128,24 +192,26 @@
         }
         
         .hero-btns {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s forwards;
-            animation-delay: 0.9s;
-        }
-        
+         opacity: 0;
+         transform: translateY(30px);
+         animation: fadeInUp 0.8s forwards;
+         animation-delay: 0.9s;
+      }
+
         .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background: transparent;
-            border: 2px solid var(--accent-color);
-            color: var(--accent-color);
-            text-decoration: none;
-            font-weight: 600;
-            border-radius: 5px;
-            margin-right: 15px;
-            transition: all 0.3s ease;
-        }
+         display: inline-block;
+         padding: 12px 30px;
+         background: transparent;
+         border: 2px solid var(--accent-color);
+         color: var(--accent-color);
+         text-decoration: none;
+         font-weight: 600;
+         border-radius: 5px;
+         margin-right: 15px;
+         margin-bottom: 10px; /* For stacking on mobile */
+         transition: all 0.3s ease;
+         text-align: center;
+      }
         
         .btn:hover {
             background-color: var(--accent-color);
@@ -242,7 +308,21 @@
             margin-bottom: 20px;
             font-size: 16px;
         }
-        
+        /* RESPONSIVE MEDIA QUERIES  */
+
+        @media (max-width: 992px) {
+     .about-content {
+         flex-direction: column;
+         text-align: center;
+     }
+     .about-text .btn {
+         margin: 5px;
+     }
+     .contact-container {
+         grid-template-columns: 1fr;
+     }
+    }
+
         /* Skills Section */
         #skills {
             padding: 100px 0;

@@ -65,6 +65,25 @@
                 }
             });
         }
+
+        document.addEventListener('DOMContentLoaded', () => {
+        const hamburger = document.querySelector(".hamburger");
+        const navLinks = document.querySelector(".nav-links");
+    
+        // Toggle the menu when the hamburger is clicked
+        hamburger.addEventListener("click", () => {
+            hamburger.classList.toggle("active");
+            navLinks.classList.toggle("active");
+        });
+    
+        // Optional: Close the menu when a link is clicked (good for single-page sites)
+        document.querySelectorAll(".nav-links a").forEach(link => {
+            link.addEventListener("click", () => {
+                hamburger.classList.remove("active");
+                navLinks.classList.remove("active");
+            });
+        });
+    });
         
         // Smooth scrolling for navigation links
         function setupSmoothScroll() {
