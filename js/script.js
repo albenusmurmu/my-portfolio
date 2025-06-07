@@ -95,72 +95,72 @@ function setupContactForm() {
 
     // !! --- THIS IS THE KEY CHANGE --- !!
     // Replace this with your actual live backend URL from Render.
-    const apiUrl = 'https://sonycom-backend.onrender.com/api/v1/contact';
+  const apiUrl = 'https://sonycom-backend.onrender.com/api/v1/contact';
 
-    contactForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
+contactForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
 
-        const submitBtn = contactForm.querySelector('button[type="submit"]');
-        const originalBtnText = submitBtn.innerText;
-        submitBtn.innerText = 'Sending...';
-        submitBtn.disabled = true;
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn.innerText;
+    submitBtn.innerText = 'Sending...';
+    submitBtn.disabled = true;
 
-        const formData = {
-            name: document.getElementById('name').value,
-            email: document.getElementById('email').value,
-            message: document.getElementById('message').value,
-            date: new Date()
-        };
+    const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        message: document.getElementById('message').value,
+        date: new Date()
+    };
 
+    try {
+        // Use the live API URL variable here
+        const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData)
+        });
+
+        // The rest of your code is already very good!
+        let responseData;
         try {
-            // Use the live API URL variable here
-            const response = await fetch(apiUrl, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData)
-            });
-
-            // The rest of your code is already very good!
-            let responseData;
-            try {
-                responseData = await response.json();
-            } catch (jsonError) {
-                const rawText = await response.text();
-                console.warn("Could not parse JSON from server:", rawText);
-                throw new Error("Invalid response from server.");
-            }
-
-            if (response.ok) {
-                formStatus.innerHTML = `
-                    <div style="color: var(--accent-color); padding: 10px;">
-                        ${responseData.message || 'Your message has been sent successfully!'}
-                    </div>
-                `;
-                contactForm.reset();
-            } else {
-                formStatus.innerHTML = `
-                    <div style="color: #ff3860; padding: 10px;">
-                        ${responseData?.error || 'Something went wrong. Please try again.'}
-                    </div>
-                `;
-            }
-
-        } catch (error) {
-            console.error('Submission error:', error);
-            formStatus.innerHTML = `
-                <div style="color: #ff3860; padding: 10px; background: #ffffff; border-radius: 5px;">
-                    Network error or server issue. Please try again later or Connect me through Email.
-                </div>                
-            `;
-        } finally {
-            submitBtn.innerText = originalBtnText;
-            submitBtn.disabled = false;
-
-            setTimeout(() => {
-                formStatus.innerHTML = '';
-            }, 5000);
+            responseData = await response.json();
+        } catch (jsonError) {
+            const rawText = await response.text();
+            console.warn("Could not parse JSON from server:", rawText);
+            throw new Error("Invalid response from server.");
         }
-    });
+
+        if (response.ok) {
+            formStatus.innerHTML = `
+                <div style="color: var(--accent-color); padding: 10px;">
+                    ${responseData.message || 'Your message has been sent successfully!'}
+                </div>
+            `;
+            contactForm.reset();
+        } else {
+            formStatus.innerHTML = `
+                <div style="color: #ff3860; padding: 10px;">
+                    ${responseData?.error || 'Something went wrong. Please try again.'}
+                </div>
+            `;
+        }
+
+    } catch (error) {
+        console.error('Submission error:', error);
+        formStatus.innerHTML = `
+            <div style="color: #ff3860; padding: 10px; background-color: #fff3f3; border: 1px solid #ff3860; border-radius: 5px;">
+                Network error or server issue. Please try again later or Connect me through Email.
+            </div>
+        `;
+    } finally {
+        submitBtn.innerText = originalBtnText;
+        submitBtn.disabled = false;
+
+        setTimeout(() => {
+            formStatus.innerHTML = '';
+        }, 5000);
+    }
+});
 }
 
        
