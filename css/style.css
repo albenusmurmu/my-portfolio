@@ -486,7 +486,7 @@
             background-color: rgba(17, 17, 17, 0.5);
         }
         
-        .contact-container {
+        .contact-container {            
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 50px;
@@ -521,40 +521,19 @@
             color: var(--accent-color);
             font-size: 20px;
         }
-        
-        .contact-form {
-            opacity: 0;
-            transform: translateX(30px);
-        }
-        
-        .contact-form.in-view {
-            animation: fadeInRight 0.8s forwards;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-control {
+
+        .map-container {
             width: 100%;
-            padding: 15px;
-            border: none;
-            background-color: var(--card-bg);
-            color: var(--text-color);
-            border-radius: 5px;
-            transition: box-shadow 0.3s ease;
+            height: 450px; /* You can adjust this height if you want */
+            border-radius: 8px; /* Matches the style of your form fields */
+            overflow: hidden;   /* Keeps the map inside the rounded corners */
+            border: 1px solid #333; /* A subtle border */
         }
-        
-        .form-control:focus {
-            outline: none;
-            box-shadow: 0 0 0 2px var(--accent-color);
+
+        #map {
+            height: 100%;
+            width: 100%;
         }
-        
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
         /* Footer */
         footer {
             padding: 30px 0;

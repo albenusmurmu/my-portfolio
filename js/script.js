@@ -105,81 +105,48 @@
             });
         }
         
-    // Contact form submission to your LIVE backend
-function setupContactForm() {
-    const contactForm = document.getElementById('contactForm');
-    const formStatus = document.getElementById('formStatus');
+function initMap() {
+    // 1. The new coordinates for "Global Institute of Technology"
+    const myLocation = { lat: 26.788524, lng: 75.833962 };
 
-    if (!contactForm) return;
+    // 2. Custom dark-mode styles (these stay the same)
+    const mapStyles = [
+        { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
+        { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
+        { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
+        { featureType: "administrative.locality", elementType: "labels.text.fill", stylers: [{ color: "#d59563" }] },
+        { featureType: "poi", elementType: "labels.text.fill", stylers: [{ color: "#d59563" }] },
+        { featureType: "poi.park", elementType: "geometry", stylers: [{ color: "#263c3f" }] },
+        { featureType: "poi.park", elementType: "labels.text.fill", stylers: [{ color: "#6b9a76" }] },
+        { featureType: "road", elementType: "geometry", stylers: [{ color: "#38414e" }] },
+        { featureType: "road", elementType: "geometry.stroke", stylers: [{ color: "#212a37" }] },
+        { featureType: "road", elementType: "labels.text.fill", stylers: [{ color: "#9ca5b3" }] },
+        { featureType: "road.highway", elementType: "geometry", stylers: [{ color: "#746855" }] },
+        { featureType: "road.highway", elementType: "geometry.stroke", stylers: [{ color: "#1f2835" }] },
+        { featureType: "road.highway", elementType: "labels.text.fill", stylers: [{ color: "#f3d19c" }] },
+        { featureType: "transit", elementType: "geometry", stylers: [{ color: "#2f3948" }] },
+        { featureType: "transit.station", elementType: "labels.text.fill", stylers: [{ color: "#d59563" }] },
+        { featureType: "water", elementType: "geometry", stylers: [{ color: "#17263c" }] },
+        { featureType: "water", elementType: "labels.text.fill", stylers: [{ color: "#515c6d" }] },
+        { featureType: "water", elementType: "labels.text.stroke", stylers: [{ color: "#17263c" }] },
+    ];
 
-    // !! --- THIS IS THE KEY CHANGE --- !!
-  const apiUrl = 'https://sonycom-backend.onrender.com/api/v1/contact';
+    // 3. Create the map object (this stays the same)
+    const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 16, // Zoomed in a little more for a specific building
+        center: myLocation,
+        styles: mapStyles,
+        disableDefaultUI: true,
+        zoomControl: true,
+    });
 
-contactForm.addEventListener('submit', async function(e) {
-    e.preventDefault();
-
-    const submitBtn = contactForm.querySelector('button[type="submit"]');
-    const originalBtnText = submitBtn.innerText;
-    submitBtn.innerText = 'Sending...';
-    submitBtn.disabled = true;
-
-    const formData = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        message: document.getElementById('message').value,
-        date: new Date()
-    };
-
-    try {
-        // Use the live API URL variable 
-        const response = await fetch(apiUrl, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(formData)
-        });
-
-        let responseData;
-        try {
-            responseData = await response.json();
-        } catch (jsonError) {
-            const rawText = await response.text();
-            console.warn("Could not parse JSON from server:", rawText);
-            throw new Error("Invalid response from server.");
-        }
-
-        if (response.ok) {
-            formStatus.innerHTML = `
-                <div style="color: var(--accent-color); padding: 10px;">
-                    ${responseData.message || 'Your message has been sent successfully!'}
-                </div>
-            `;
-            contactForm.reset();
-        } else {
-            formStatus.innerHTML = `
-                <div style="color: #ff3860; padding: 10px;">
-                    ${responseData?.error || 'Something went wrong. Please try again.'}
-                </div>
-            `;
-        }
-
-    } catch (error) {
-        console.error('Submission error:', error);
-        formStatus.innerHTML = `
-            <div style="color: #ff3860; padding: 10px; background-color: #fff3f3; border: 1px solid #ff3860; border-radius: 5px;">
-                Network error or server issue. Please try again later or Connect me through Email.
-            </div>
-        `;
-    } finally {
-        submitBtn.innerText = originalBtnText;
-        submitBtn.disabled = false;
-
-        setTimeout(() => {
-            formStatus.innerHTML = '';
-        }, 5000);
-    }
-});
+    // 4. Add a marker to your new location
+    new google.maps.Marker({
+        position: myLocation,
+        map: map,
+        title: "Global Institute of Technology", // Updated title
+    });
 }
-
        
         // Initialize everything when DOM content is loaded
         document.addEventListener('DOMContentLoaded', () => {
